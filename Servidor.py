@@ -12,12 +12,23 @@ print('Conectado desde: ',direccion)
 while True:
 
     conexion.sendall(b'--Servidor conversor de moneda---\n ***Seleccione la opcion a la que desea convertir la moneda Colombiana***\n 1. Dolar \n 2. Euro \n 3. Peso Mexicano \n 4. Salir')
-    recibido = conexion.recv(1024).decode()
-    if not recibido:
-       break
-    print("Del cliente recibi: ", recibido)
+    while True:
+        try :
+            recibido = conexion.recv(1024).decode()
+            if not recibido:
+                break
+            rec = str(recibido)
+            op = int(rec)
+            print("Del cliente recibi: ", recibido)
+            if op < 1 or op > 4:
+                op = "s"
+                
 
-    if recibido.isnumeric():
+        except ValueError:
+            conexion.sendall(b'Error')
+
+
+    """if recibido.isnumeric():
 
         op = int(recibido)
         if op < 1 or op > 4:
@@ -86,4 +97,4 @@ while True:
                 break
 
     else:
-        conexion.sendall(b'Valor incorrecto\n')
+        conexion.sendall(b'Valor incorrecto\n') """
