@@ -29,21 +29,19 @@ while True:
         conexion.sendall(b'Ingresa el valor en pesos Colombianos a convertir: ')
         v = 0
         while v <= 0:
-            repetir = True
-            while repetir == True:
-                try:
-                    valor = conexion.recv(1024).decode()
-                    if not valor:
-                        break
-                    val = str(valor)
-                    valorconv = float(val)
-                    v = valorconv
-                    repetir = False
-                    print("Del cliente recibi: ", valor)
-                except ValueError:
-                    conexion.sendall(b'Error! Ingrese un dato valido')
-            if valorconv <= 0:
-                conexion.sendall(b'Error dato! *Ingrese un valor mayor a 0*')
+            try:
+                valor = conexion.recv(1024).decode()
+                if not valor:
+                    break
+                val = str(valor)
+                valorconv = float(val)
+                v = valorconv
+                print("Del cliente recibi: ", valor)
+                if valorconv <= 0:
+                    conexion.sendall(b'Error dato! *Ingrese un valor mayor a 0*')
+            except ValueError:
+                conexion.sendall(b'Error! Ingrese un dato valido')
+
 
     if op == 1:
         ResultadoDolar = valorconv / 3829.70
