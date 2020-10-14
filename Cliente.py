@@ -9,8 +9,8 @@ while True:
     if not datos:
         break
     print('Mensaje del servidor: ', datos)
-
     #Enviar informacion
     enviar = str(input())
     soc.sendall(enviar.encode())
+
 

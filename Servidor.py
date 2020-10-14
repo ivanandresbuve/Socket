@@ -14,8 +14,8 @@ while True:
     while p <= 0 or p >= 5:
         try:
             recibido = conexion.recv(1024).decode()
-            rec = str(recibido)
-            op = int(rec)
+
+            op = int(recibido)
             p = op
             print("Del cliente recibi: ", recibido)
             if op < 1 or op > 4 or not recibido:
@@ -29,8 +29,8 @@ while True:
         while v <= 0:
             try:
                 valor = conexion.recv(1024).decode()
-                val = str(valor)
-                valorconv = float(val)
+
+                valorconv = float(valor)
                 v = valorconv
                 print("Del cliente recibi: ", valor)
                 if valorconv <= 0 or not valor:
