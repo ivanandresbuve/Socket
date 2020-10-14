@@ -9,7 +9,6 @@ conexion, direccion = soc.accept()
 print('Conectado desde: ',direccion)
 
 while True:
-
     conexion.sendall(b'--Servidor conversor de moneda---\n ***Seleccione la opcion a la que desea convertir la moneda Colombiana***\n 1. Dolar \n 2. Euro \n 3. Peso Mexicano \n 4. Salir')
     p = 0
     while p <= 0 or p >= 5:
@@ -37,7 +36,7 @@ while True:
                     if not valor:
                         break
                     val = str(valor)
-                    valorconv = int(val)
+                    valorconv = float(val)
                     v = valorconv
                     repetir = False
                     print("Del cliente recibi: ", valor)
@@ -63,7 +62,7 @@ while True:
         print(valorconv, 'pesos Colombianos es igual a', ResultadoMex, 'pesos Mexicanos')
 
     elif op == 4:
-                conexion.sendall(b'Gracias por usar el conversor de monedas')
-                print('Conversor de moneda finalizado')
-                conexion.close()
-                break
+        conexion.sendall(b'Gracias por usar el conversor de monedas')
+        print('Conversor de moneda finalizado')
+        conexion.close()
+        break
