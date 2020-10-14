@@ -12,7 +12,7 @@ while True:
     conexion.sendall(b'--Servidor conversor de moneda---\n ***Seleccione la opcion a la que desea convertir la moneda Colombiana***\n 1. Dolar \n 2. Euro \n 3. Peso Mexicano \n 4. Salir')
     p = 0
     while p <= 0 or p >= 5:
-        try :
+        try:
             recibido = conexion.recv(1024).decode()
             if not recibido:
                 break
@@ -45,17 +45,20 @@ while True:
 
     if op == 1:
         ResultadoDolar = valorconv / 3829.70
-        ResultadoEnviar = str(ResultadoDolar)
+        Mensaje = valorconv, 'pesos Colombianos es igual a', ResultadoDolar, 'Dolares'
+        ResultadoEnviar = str(Mensaje)
         conexion.sendall(ResultadoEnviar.encode())
         print(valorconv, 'pesos Colombianos es igual a', ResultadoDolar, 'Dolares')
     elif op == 2:
         ResultadoEuro = valorconv / 4456.05
-        ResultadoEnviar = str(ResultadoEuro)
+        Mensaje = valorconv, 'pesos Colombianos es igual a', ResultadoEuro, 'Euros'
+        ResultadoEnviar = str(Mensaje)
         conexion.sendall(ResultadoEnviar.encode())
         print(valorconv, 'pesos Colombianos es igual a', ResultadoEuro, 'Euros')
     elif op == 3:
         ResultadoMex = valorconv / 174.06
-        ResultadoEnviar = str(ResultadoMex)
+        Mensaje = valorconv, 'pesos Colombianos es igual a', ResultadoMex, 'pesos Mexicanos'
+        ResultadoEnviar = str(Mensaje)
         conexion.sendall(ResultadoEnviar.encode())
         print(valorconv, 'pesos Colombianos es igual a', ResultadoMex, 'pesos Mexicanos')
 
