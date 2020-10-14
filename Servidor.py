@@ -14,13 +14,11 @@ while True:
     while p <= 0 or p >= 5:
         try:
             recibido = conexion.recv(1024).decode()
-            if not recibido:
-                break
             rec = str(recibido)
             op = int(rec)
             p = op
             print("Del cliente recibi: ", recibido)
-            if op < 1 or op > 4:
+            if op < 1 or op > 4 or not recibido:
                 conexion.sendall(b'Error dato *Ingrese un valor entre 1 a 4')
         except ValueError:
             conexion.sendall(b'Error! Ingrese un dato valido')
@@ -31,13 +29,11 @@ while True:
         while v <= 0:
             try:
                 valor = conexion.recv(1024).decode()
-                if not valor:
-                    break
                 val = str(valor)
                 valorconv = float(val)
                 v = valorconv
                 print("Del cliente recibi: ", valor)
-                if valorconv <= 0:
+                if valorconv <= 0 or not valor:
                     conexion.sendall(b'Error dato! *Ingrese un valor mayor a 0*')
             except ValueError:
                 conexion.sendall(b'Error! Ingrese un dato valido')
